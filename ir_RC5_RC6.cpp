@@ -55,15 +55,23 @@ int  IRrecv::getRClevel (decode_results *results,  int *offset,  int *used,  int
 
 //+=============================================================================
 #if SEND_RC5
-void  IRsend::sendRC5 (unsigned long data,  int nbits)
+void  IRsend::sendRC5 (unsigned long data,  int nbits, bool extend)
 {
 	// Set IR carrier frequency
 	enableIROut(36);
 
 	// Start
 	mark(RC5_T1);
-	space(RC5_T1);
-	mark(RC5_T1);
+	if(extend)
+	{
+		mark(RC5_T1);
+		space(RC5_T1);
+	}
+	else
+	{
+		space(RC5_T1);
+		mark(RC5_T1);
+	}
 
 	// Data
 	for (unsigned long  mask = 1UL << (nbits - 1);  mask;  mask >>= 1) {

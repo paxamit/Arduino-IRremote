@@ -71,12 +71,11 @@
 // If you are using another library which uses timer2, you have options to
 //   switch IRremote to use a different timer.
 //
-
 // Sparkfun Pro Micro
 #if defined(ARDUINO_AVR_PROMICRO)
 	//#define IR_USE_TIMER1     // tx = pin 9
-	#define IR_USE_TIMER3       // tx = pin 5
-	//#define IR_USE_TIMER4_HS  // tx = pin 5
+	//#define IR_USE_TIMER3       // tx = pin 5
+	#define IR_USE_TIMER4_HS  // tx = pin 5
 
 // Arduino Mega
 #elif defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
@@ -123,7 +122,7 @@
 || defined(__AVR_ATmega164P__)
 	//#define IR_USE_TIMER1   // tx = pin 13
 	#define IR_USE_TIMER2     // tx = pin 14
-	
+
 //MegaCore - ATmega64, ATmega128
 #elif defined(__AVR_ATmega64__) || defined(__AVR_ATmega128__)
  	#define IR_USE_TIMER1     // tx = pin 13
@@ -313,7 +312,7 @@
 
 #define TIMER_RESET
 
-#if defined(ARDUINO_AVR_PROMICRO) // Sparkfun Pro Micro                         
+#if defined(ARDUINO_AVR_PROMICRO) // Sparkfun Pro Micro
 	#define TIMER_ENABLE_PWM    (TCCR4A |= _BV(COM4A0))     // Use complimentary O̅C̅4̅A̅ output on pin 5
 	#define TIMER_DISABLE_PWM   (TCCR4A &= ~(_BV(COM4A0)))  // (Pro Micro does not map PC7 (32/ICP3/CLK0/OC4A)
 															// of ATmega32U4 )
@@ -578,12 +577,12 @@
 // way to do this on ESP32 is using the RMT built in driver like in this incomplete library below
 // https://github.com/ExploreEmbedded/ESP32_RMT
 #elif defined(IR_TIMER_USE_ESP32)
-#define TIMER_RESET	     
-#define TIMER_ENABLE_PWM     
+#define TIMER_RESET
+#define TIMER_ENABLE_PWM
 #define TIMER_DISABLE_PWM   Serial.println("IRsend not implemented for ESP32 yet");
-#define TIMER_ENABLE_INTR    
-#define TIMER_DISABLE_INTR   
-#define TIMER_INTR_NAME      
+#define TIMER_ENABLE_INTR
+#define TIMER_DISABLE_INTR
+#define TIMER_INTR_NAME
 
 //---------------------------------------------------------
 // Unknown Timer

@@ -269,7 +269,7 @@ class IRsend
 
 		//......................................................................
 #		if SEND_RC5
-			void  sendRC5        (unsigned long data,  int nbits) ;
+			void  sendRC5        (unsigned long data,  int nbits, bool extend = false) ;
 #		endif
 #		if SEND_RC6
 			void  sendRC6        (unsigned long data,  int nbits) ;
